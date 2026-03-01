@@ -1,8 +1,7 @@
-import { ArrowRight } from "lucide-react";
 import Space from "./space";
 import SpacesWrapper from "./spaces-wrapper";
 
-const YourSpaces = () => {
+const SharesToYouSpaces = () => {
     const spaces = [
         {
             id: "abc123",
@@ -56,8 +55,8 @@ const YourSpaces = () => {
 
     return (
         <SpacesWrapper
-            title="Your Spaces"
-            description="View spaces that you have created."
+            title="Shared To You"
+            description="View spaces shared to you by others."
         >
             <ul className="grid grid-cols-3 gap-4 mt-8">
                 {spaces.map((space) => (
@@ -72,4 +71,4 @@ const YourSpaces = () => {
     );
 };
 
-export default YourSpaces;
+export default SharesToYouSpaces;
