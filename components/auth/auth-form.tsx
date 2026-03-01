@@ -11,6 +11,8 @@ import { useEffect, useState } from "react";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
+import { login, registerUser } from "@/actions/auth";
+import { redirect } from "next/navigation";
 
 const AuthForm = () => {
     // Authentication
@@ -53,7 +55,19 @@ const AuthForm = () => {
 
     // Handler for the actual authentication
     const handleAuthentication = async () => {
-        
+        let result = { ok: false, message: "" };
+
+        if (choice == "register") {
+            result = await registerUser(username, password);
+        } else if (choice == "login") {
+            result = await login(username, password);
+        }
+
+        if (result.ok) {
+            redirect("/home");
+        } else {
+            console.log(result.message);
+        }
     };
 
     if (!choiceRenderTexts.title) return null;
@@ -88,7 +102,9 @@ const AuthForm = () => {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
-                <Button>{choiceRenderTexts.title}</Button>
+                <Button onClick={handleAuthentication}>
+                    {choiceRenderTexts.title}
+                </Button>
             </main>
             <footer className="text-center text-muted-foreground">
                 <span>{choiceRenderTexts.alternativeText} </span>
