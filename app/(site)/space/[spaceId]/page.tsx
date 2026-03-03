@@ -1,3 +1,4 @@
+import SharedFiles from "@/components/files/shared-files";
 import React from "react";
 
 interface SingleSpacePageProps {
@@ -12,7 +13,7 @@ const SingleSpacePage : React.FC<SingleSpacePageProps> = async ({
 
     return (
         <React.Fragment>
-            
+            <SharedFiles />
         </React.Fragment>
     )
 };
